@@ -1,6 +1,6 @@
 {
-  "homepage": "https://katherinekjeer.herokuapp.com/",
-  "name": "portfolio",
+  "homepage": "http://kkjeer.github.io/homepage",
+  "name": "homepage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "git push heroku master"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.0.0",
     "react-error-overlay": "^6.0.9"
   }
 }
