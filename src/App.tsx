@@ -4,8 +4,10 @@ import { Header } from "./Header";
 import { Divider } from "./Divider";
 import { COLORS, PROJECTS } from "./constants";
 import { Project } from "./Project";
+import { Homepage } from "./Homepage";
 
 export function App() {
+  return <Homepage />
   return (
     <Stack
       gap={24}
