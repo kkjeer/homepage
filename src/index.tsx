@@ -5,6 +5,7 @@ import "./index.css";
 import { App } from "./App";
 import ErrorPage from "./ErrorPage";
 import { Projects } from "./Projects";
+import { Experience } from "./Experience";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
     path: "projects/",
     element: <Projects />,
   },
+  // {
+  //   path: "projects/:projectId",
+  //   element: <Projects />,
+  // },
   {
-    path: "projects/:projectId",
-    element: <Projects />,
+    path: "experience/",
+    element: <Experience />,
   },
 ]);
 

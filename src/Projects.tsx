@@ -12,17 +12,9 @@ export function Projects() {
     <>
       <StickyHeader title="Projects" />
       <Stack
-        // id="projects-container"
-        // horizontal
-        // wrap
-        // verticalAlign="start"
-        // horizontalAlign="start"
-        // tokens={{ childrenGap: 24 }}
-        // grow
         horizontalAlign="center"
         style={{
           width: "100vw",
-          // height: `calc(100vh - ${STICKY_HEADER_HEIGHT}px - 20px)`,
           height: "100vh",
           background: COLORS.background.light,
           padding: 20,

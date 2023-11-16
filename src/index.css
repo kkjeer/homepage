@@ -113,19 +113,22 @@ a:hover > span {
 }
 
 @media screen and (min-width: 470px) {
-  #projects-container {
+  #projects-container,
+  #experience-container {
     width: 470px !important;
   }
 }
 
 @media screen and (min-width: 964px) {
-  #projects-container {
+  #projects-container,
+  #experience-container {
     width: 964px !important; /* 2 * 470px + 1 * 24px */
   }
 }
 
 @media screen and (min-width: 1458px) {
-  #projects-container {
+  #projects-container,
+  #experience-container {
     width: 1458px !important; /* 3 * 470px + 2 * 24px */
   }
 }
