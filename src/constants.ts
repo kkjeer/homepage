@@ -10,7 +10,13 @@ export const COLORS = {
     medium: "#e7e7e7",
     light: "#f0f0f0",
   },
+  palette: {
+    turquoise: "#16c6cc",
+    navy: "#003058"
+  }
 };
+
+export const STICKY_HEADER_HEIGHT = 60;
 
 export interface IProject {
   title: string;

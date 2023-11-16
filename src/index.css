@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 code {
@@ -12,19 +14,43 @@ code {
     monospace;
 }
 
-a,
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ccc;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* a,
 a > span {
   color: #558c9d;
-  /* color: #3abdc4; */
   text-decoration: none;
 }
 
 a:hover,
 a:hover > span {
   color: #16c6cc;
-}
+} */
 
 .side-link {
+  cursor: pointer;
   .link-line {
     width: 30px;
     height: 2px;
@@ -53,15 +79,55 @@ a:hover > span {
 }
 
 .contact-link {
+  cursor: pointer;
   width: 30px;
   height: 30px;
 }
 
 .contact-link:hover svg {
-  fill: #444;
+  fill: #242424;
   width: 25px;
   height: 25px;
   transition: width 0.2s ease-in height 0.2s ease-in;
+}
+
+.home-link {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.home-link:hover svg {
+  fill: #242424;
+  width: 30px;
+  height: 30px;
+}
+
+.card {
+  background: #d9dadd66;
+  border-radius: 9px;
+}
+
+.card:hover {
+  background: #d9daddaa;
+}
+
+@media screen and (min-width: 470px) {
+  #projects-container {
+    width: 470px !important;
+  }
+}
+
+@media screen and (min-width: 964px) {
+  #projects-container {
+    width: 964px !important; /* 2 * 470px + 1 * 24px */
+  }
+}
+
+@media screen and (min-width: 1458px) {
+  #projects-container {
+    width: 1458px !important; /* 3 * 470px + 2 * 24px */
+  }
 }
 
 .linear-wipe {
