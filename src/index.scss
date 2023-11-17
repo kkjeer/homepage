@@ -1,3 +1,5 @@
+@use 'colors';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   overflow-y: hidden;
+  background-color: colors.$background;
 }
 
 code {
@@ -15,6 +18,7 @@ code {
 }
 
 /* custom scrollbar */
+
 ::-webkit-scrollbar {
   width: 20px;
 }
@@ -24,43 +28,56 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #aaa;
+  background-color: colors.$scrollbar;
   border-radius: 20px;
   border: 6px solid transparent;
   background-clip: content-box;
+  z-index: 9999;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #ccc;
+  background-color: colors.$scrollbar-hover;
 }
+
+/* links */
 
 a {
   text-decoration: none;
 }
 
-/* a,
-a > span {
-  color: #558c9d;
-  text-decoration: none;
+/* text */
+
+span, .css-92 {
+  color: colors.$text;
 }
 
-a:hover,
-a:hover > span {
-  color: #16c6cc;
-} */
+.dark-text {
+  color: colors.$dark-neutral;
+}
+
+.medium-text {
+  color: colors.$medium-neutral;
+}
+
+.highlight {
+  font-weight: bold;
+  color: colors.$dark-color;
+}
+
+/* homepage side links (experience, projects, etc.) */
 
 .side-link {
   cursor: pointer;
   .link-line {
     width: 30px;
     height: 2px;
-    background-color: #16c6cc;
+    background-color: colors.$light-color;
     border-radius: 999pc;
     transition: width 0.2s ease-in;
   }
   .link-text {
     font-size: 18px;
-    color: #16c6cc;
+    color: colors.$light-color;
     text-decoration: none;
     font-family: Consolas;
   }
@@ -68,49 +85,98 @@ a:hover > span {
 
 .side-link:hover {
   .link-line {
-    background-color: #003058;
+    background-color: colors.$dark-color;
     width: 60px;
     transition: background-color 0.2s ease-in width 0.2s ease-in;
   }
   .link-text {
-    color: #003058;
+    color: colors.$dark-color;
     transition: color 0.2s ease-in;
   }
 }
+
+/* homepage contact icon svg links */
 
 .contact-link {
   cursor: pointer;
   width: 30px;
   height: 30px;
+  svg {
+    fill: colors.$medium-neutral;
+  }
 }
 
 .contact-link:hover svg {
-  fill: #242424;
+  fill: colors.$dark-neutral;
   width: 25px;
   height: 25px;
   transition: width 0.2s ease-in height 0.2s ease-in;
 }
 
+/* subpage home icon svg links */
+
 .home-link {
   cursor: pointer;
   width: 40px;
   height: 40px;
+  svg {
+    fill: colors.$medium-neutral;
+  }
 }
 
 .home-link:hover svg {
-  fill: #242424;
+  fill: colors.$dark-neutral;
   width: 30px;
   height: 30px;
 }
 
-.card {
-  background: #d9dadd66;
+/* sticky header */
+
+.sticky-header {
+  box-shadow: colors.$shadow 0px 0px 6px 6px;
+}
+
+/* homepage bio border */
+
+.vertical-border {
+  background: linear-gradient(to bottom, colors.$dark-color 0%, colors.$light-color 100%)
+}
+
+/* tags */
+
+.category {
+  background: rgba(colors.$dark-color, .2);
+  border: 1px solid colors.$dark-color;
   border-radius: 9px;
+  padding: 6px 9px;
+}
+
+.tag {
+  background: rgba(colors.$light-color, .2);
+  border: 1px solid colors.$light-color;
+  border-radius: 999pc;
+  padding: 6px 9px;
+}
+
+/* subpage cards (projects, roles, etc.) */
+
+.card {
+  background: colors.$card;
+  border-radius: 9px;
+  .card-left {
+    background: colors.$card-left;
+  }
 }
 
 .card:hover {
-  background: #d9daddaa;
+  background: colors.$card-hover;
+  box-shadow: colors.$shadow 0px 0px 6px 6px;
+  .card-left {
+    background: colors.$card-left-hover;
+  }
 }
+
+/* subpage card containers responsive widths */
 
 @media screen and (min-width: 470px) {
   #projects-container,
@@ -133,16 +199,44 @@ a:hover > span {
   }
 }
 
+/* molecule colors */
+
+// .molecule {
+//   border: 1px solid colors.$light-color;
+// }
+
+.molecule circle.dark-color {
+  fill: colors.$dark-color;
+}
+
+.molecule circle.light-color {
+  fill: colors.$light-color;
+}
+
+.molecule circle.dark-neutral {
+  fill: colors.$dark-neutral;
+}
+
+.molecule circle.light-neutral {
+  fill: colors.$medium-neutral;
+}
+
+.molecule line.light-neutral {
+  stroke: colors.$medium-neutral;
+}
+
+/* big text hover gradient effect */
+
 .linear-wipe {
   text-align: center;
-  font-size: 42px !important;
+  font-size: 38px !important;
 
   background: linear-gradient(
     to right,
-    #003058 20%,
-    #16c6cc 40%,
-    #16c6cc 60%,
-    #003058 80%
+    colors.$dark-color 20%,
+    colors.$light-color 40%,
+    colors.$light-color 60%,
+    colors.$dark-color 80%
   );
   background-size: 200% auto;
 
@@ -166,9 +260,4 @@ a:hover > span {
   to {
     background-position: 200% center;
   }
-}
-
-.highlight {
-  font-weight: bold;
-  color: #003058;
 }

@@ -13,7 +13,6 @@ export function Contacts() {
           target="_blank"
         >
           <svg
-            fill="#545454"
             height="20px"
             width="20px"
             version="1.0"
@@ -31,7 +30,6 @@ export function Contacts() {
       >
         <a href="https://www.github.com/kkjeer/" target="_blank">
           <svg
-            fill="#545454"
             height="20px"
             width="20px"
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +51,6 @@ export function Contacts() {
       >
         <a href="https://www.linkedin.com/in/kkjeer/" target="_blank">
           <svg
-            fill="#545454"
             height="20px"
             width="20px"
             version="1.1"

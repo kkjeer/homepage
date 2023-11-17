@@ -11,18 +11,18 @@ interface StickyHeaderProps {
 export function StickyHeader({ title }: StickyHeaderProps) {
   return (
     <Stack
+      className="sticky-header"
       horizontal
       horizontalAlign="space-between"
       verticalAlign="center"
       tokens={{ childrenGap: 18 }}
       style={{
-        position: "fixed",
+        position: "sticky",
         top: 0,
         width: "100vw",
         height: STICKY_HEADER_HEIGHT,
         padding: "3px 9px",
-        // boxShadow: "0px 5px #e7e7e7aa",
-        boxShadow: "#ddd 0px 0px 6px 6px",
+        background: "transparent",
       }}
     >
       <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 18 }}>
@@ -33,7 +33,6 @@ export function StickyHeader({ title }: StickyHeaderProps) {
             horizontalAlign="center"
           >
             <svg
-              fill="#545454"
               height="25px"
               width="25px"
               version="1.1"

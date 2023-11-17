@@ -1,13 +1,9 @@
 import { Stack, Text } from "@fluentui/react";
-import { useParams } from "react-router-dom";
 import { StickyHeader } from "./StickyHeader";
-import { COLORS, STICKY_HEADER_HEIGHT } from "./constants";
-import { Image } from "./Image";
+import { STICKY_HEADER_HEIGHT } from "./constants";
 import { Tag } from "./Homepage";
 
 export function Experience() {
-  let { projectId } = useParams();
-
   return (
     <>
       <StickyHeader title="Experience" />
@@ -15,10 +11,9 @@ export function Experience() {
         horizontalAlign="center"
         style={{
           width: "100vw",
-          height: "100vh",
-          background: COLORS.background.light,
+          height: `calc(100vh - ${STICKY_HEADER_HEIGHT}px)`,
           padding: 20,
-          paddingTop: STICKY_HEADER_HEIGHT + 20,
+          paddingTop: 25,
           overflowX: "hidden",
           overflowY: "auto",
         }}
@@ -117,11 +112,11 @@ function Role({
     <a target="_blank" href={link} className="card">
       <Stack horizontal style={{ width: 470, height: 260 }}>
         <Stack
+          className="card-left"
           style={{
             padding: 9,
             paddingLeft: 6,
             paddingRight: 24,
-            background: "#d0d0d0aa",
             borderTopLeftRadius: 9,
             borderBottomLeftRadius: 9,
           }}
@@ -142,10 +137,16 @@ function Role({
         <Stack verticalAlign="space-between" style={{ padding: 9 }}>
           <Stack tokens={{ childrenGap: 18 }}>
             <Stack tokens={{ childrenGap: 9 }}>
-              <Text style={{ fontSize: 18, fontWeight: 500, color: "#242424" }}>
+              <Text
+                className="dark-text"
+                style={{ fontSize: 18, fontWeight: 500 }}
+              >
                 {company}
               </Text>
-              <Text style={{ fontSize: 16, fontWeight: 500, color: "#242424" }}>
+              <Text
+                className="dark-text"
+                style={{ fontSize: 16, fontWeight: 500 }}
+              >
                 {title}
               </Text>
             </Stack>

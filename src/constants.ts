@@ -12,7 +12,9 @@ export const COLORS = {
   },
   palette: {
     turquoise: "#16c6cc",
-    navy: "#003058"
+    navy: "#003058",
+    mediumGray: "#545454",
+    darkGray: "#242424"
   }
 };
 

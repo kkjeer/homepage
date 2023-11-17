@@ -6,7 +6,7 @@ import { Image } from "./Image";
 import { Tag } from "./Homepage";
 
 export function Projects() {
-  let { projectId } = useParams();
+  // let { projectId } = useParams();
 
   return (
     <>
@@ -15,10 +15,9 @@ export function Projects() {
         horizontalAlign="center"
         style={{
           width: "100vw",
-          height: "100vh",
-          background: COLORS.background.light,
+          height: `calc(100vh - ${STICKY_HEADER_HEIGHT}px)`,
           padding: 20,
-          paddingTop: STICKY_HEADER_HEIGHT + 20,
+          paddingTop: 25,
           overflowX: "hidden",
           overflowY: "auto",
         }}
@@ -144,11 +143,11 @@ function Project({ title, link, description, category, tags }: ProjectProps) {
     >
       <Stack horizontal style={{ width: 470, height: 220 }}>
         <Stack
+          className="card-left"
           style={{
             padding: 9,
             paddingLeft: 6,
             paddingRight: 24,
-            background: "#d0d0d0aa",
             borderTopLeftRadius: 9,
             borderBottomLeftRadius: 9,
           }}
@@ -165,22 +164,16 @@ function Project({ title, link, description, category, tags }: ProjectProps) {
         </Stack>
         <Stack verticalAlign="space-between" style={{ padding: 9 }}>
           <Stack tokens={{ childrenGap: 18 }}>
-            <Text style={{ fontSize: 18, fontWeight: 500, color: "#242424" }}>
+            <Text
+              className="dark-text"
+              style={{ fontSize: 18, fontWeight: 500 }}
+            >
               {title}
             </Text>
             <Text style={{ fontSize: 14, lineHeight: 1.4 }}>{description}</Text>
           </Stack>
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 9 }}>
-            <Stack
-              styles={{
-                root: {
-                  background: COLORS.palette.navy + "33",
-                  border: `1px solid ${COLORS.palette.navy}`,
-                  borderRadius: 9,
-                  padding: "6px 9px",
-                },
-              }}
-            >
+            <Stack className="category">
               <Text style={{ fontSize: 14, fontFamily: "Consolas" }}>
                 {category}
               </Text>
