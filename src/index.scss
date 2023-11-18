@@ -134,6 +134,9 @@ span, .css-92 {
 
 .sticky-header {
   box-shadow: colors.$shadow 0px 0px 6px 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 /* homepage bio border */
@@ -171,6 +174,12 @@ span, .css-92 {
 .card:hover {
   background: colors.$card-hover;
   box-shadow: colors.$shadow 0px 0px 6px 6px;
+
+  /* From https://css.glass */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
   .card-left {
     background: colors.$card-left-hover;
   }
@@ -201,9 +210,10 @@ span, .css-92 {
 
 /* molecule colors */
 
-// .molecule {
-//   border: 1px solid colors.$light-color;
-// }
+.molecule {
+  border: 1px solid colors.$light-color;
+  opacity: 0.7;
+}
 
 .molecule circle.dark-color {
   fill: colors.$dark-color;
@@ -229,7 +239,7 @@ span, .css-92 {
 
 .linear-wipe {
   text-align: center;
-  font-size: 38px !important;
+  font-size: 34px !important;
 
   background: linear-gradient(
     to right,
