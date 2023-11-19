@@ -78,7 +78,7 @@ export function Molecules({ flipped = false }: { flipped?: boolean }) {
       {ATOMS.map((atom) => renderLines(atom))}
       {ATOMS.map((atom) => (
         <circle
-          id={`atom-${flipped && "flipped-"}${atom.id}`}
+          id={`atom-${flipped ? "flipped-" : ""}${atom.id}`}
           className={atom.color}
           r={atom.r}
           cx={`${atom.x}%`}
@@ -98,7 +98,206 @@ interface IAtom {
   links: string[];
 }
 
+const linePointX = (x: number, y: number, slope: number, dx: number) => {
+  const dy = slope * dx;
+  return { x: x + dx, y: y + dy };
+};
+
+const linePointY = (x: number, y: number, slope: number, dy: number) => {
+  const dx = (1 / slope) * dy;
+  return { x: x + dx, y: y + dy };
+};
+
+const octagon = (
+  id: string,
+  cx: number,
+  cy: number,
+  slope: number,
+  perp: number,
+  dxSmall: number,
+  dxLarge: number
+) => {
+  const makeAtom = (n: number, p: { x: number; y: number }) => {
+    let next = (n + 1) % 6;
+    if (next === 0) next = 6;
+    return {
+      id: `${id}${n}`,
+      ...p,
+      r: 10,
+      color: "dark-color",
+      links: [`${id}${next}`],
+    };
+  };
+  const atoms: IAtom[] = [];
+
+  // upper atoms - 1 and 6
+  const { x: ux, y: uy } = linePointY(cx, cy, perp, -8);
+  const p1 = linePointX(ux, uy, slope, dxSmall);
+  atoms.push(makeAtom(1, p1));
+  const p6 = linePointX(ux, uy, slope, -dxSmall);
+  atoms.push(makeAtom(6, p6));
+
+  // center atoms - 2 and 5
+  const p2 = linePointX(cx, cy, slope, dxLarge);
+  atoms.push(makeAtom(2, p2));
+  const p5 = linePointX(cx, cy, slope, -dxLarge);
+  atoms.push(makeAtom(5, p5));
+
+  // lower atoms - 3 and 4
+  const { x: lx, y: ly } = linePointY(cx, cy, perp, 8);
+  const p3 = linePointX(lx, ly, slope, dxSmall);
+  atoms.push(makeAtom(3, p3));
+  const p4 = linePointX(lx, ly, slope, -dxSmall);
+  atoms.push(makeAtom(4, p4));
+
+  if (false) {
+    atoms.push({
+      id: `${id}center`,
+      x: cx,
+      y: cy,
+      r: 10,
+      color: "light-color",
+      links: [],
+    });
+    atoms.push({
+      id: `${id}upper`,
+      x: ux,
+      y: uy,
+      r: 10,
+      color: "light-color",
+      links: [],
+    });
+    atoms.push({
+      id: `${id}lower`,
+      x: lx,
+      y: ly,
+      r: 10,
+      color: "light-color",
+      links: [],
+    });
+  }
+
+  return atoms;
+};
+
+const makeOctagon = (
+  id: string,
+  x1: number,
+  y1: number,
+  dx6: number,
+  dy6: number,
+  dx2: number,
+  dy2: number
+) => {
+  const atoms: IAtom[] = [];
+  atoms.push({
+    id: `${id}1`,
+    x: x1,
+    y: y1,
+    r: 10,
+    color: "dark-color",
+    links: [`${id}2`],
+  });
+  atoms.push({
+    id: `${id}2`,
+    x: x1 + dx2,
+    y: y1 + dy2,
+    r: 10,
+    color: "dark-color",
+    links: [`${id}3`],
+  });
+  // atoms.push({
+  //   id: `${id}3`,
+  //   x: x1,
+  //   y: y1,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: [`${id}2`],
+  // });
+  atoms.push({
+    id: `${id}5`,
+    x: x1 + dx6 - dx2,
+    y: y1 + dy6 + dy2,
+    r: 10,
+    color: "dark-color",
+    links: [`${id}6`],
+  });
+  atoms.push({
+    id: `${id}6`,
+    x: x1 + dx6,
+    y: y1 + dy6,
+    r: 10,
+    color: "dark-color",
+    links: [`${id}1`],
+  });
+  return atoms;
+};
+
+// r1-r6: dx: 6, dy: 2
+// r2-r5: dx: 12, dy: 2
+// r3-r4: dx: 6, dy: 2
+
+// dx6: -6, dy6: -2, dx2: 2, dy2: 8
+// r1-r2: dx: 2: dy: 8
+// r1-r3: dx: -2, dy: 16
+// r1-r4: dx: -8, dy: 14
+// r1-r5: dx: -10, dy: 6
+// r1-r6: dx: -6, dy: -2
 const ATOMS: IAtom[] = [
+  // {
+  //   id: "r1",
+  //   x: 88,
+  //   y: 15,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r2"],
+  // },
+  // {
+  //   id: "r2",
+  //   x: 90,
+  //   y: 23,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r3"],
+  // },
+  // {
+  //   id: "r3",
+  //   x: 86,
+  //   y: 31,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r4"],
+  // },
+  // {
+  //   id: "r4",
+  //   x: 80,
+  //   y: 29,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r5"],
+  // },
+  // {
+  //   id: "r5",
+  //   x: 78,
+  //   y: 21,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r6"],
+  // },
+  // {
+  //   id: "r6",
+  //   x: 82,
+  //   y: 13,
+  //   r: 10,
+  //   color: "dark-color",
+  //   links: ["r1"],
+  // },
+  ...octagon("rtest", 84, 22, 0.4, -20, 3, 5.4),
+  ...octagon("c", 65, 28, 0.4, -20, 3, 5.4),
+  // ...makeOctagon("test", 30, 30, -6, -2, 2, 8),
+];
+
+const ATOMS_ALT: IAtom[] = [
   {
     id: "right",
     x: 95,
