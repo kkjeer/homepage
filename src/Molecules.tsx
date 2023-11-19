@@ -108,7 +108,7 @@ const linePointY = (x: number, y: number, slope: number, dy: number) => {
   return { x: x + dx, y: y + dy };
 };
 
-const octagon = (
+const hexagon = (
   id: string,
   cx: number,
   cy: number,
@@ -180,7 +180,7 @@ const octagon = (
   return atoms;
 };
 
-const makeOctagon = (
+const makeHexagon = (
   id: string,
   x1: number,
   y1: number,
@@ -292,9 +292,9 @@ const ATOMS: IAtom[] = [
   //   color: "dark-color",
   //   links: ["r1"],
   // },
-  ...octagon("rtest", 84, 22, 0.4, -20, 3, 5.4),
-  ...octagon("c", 65, 28, 0.4, -20, 3, 5.4),
-  // ...makeOctagon("test", 30, 30, -6, -2, 2, 8),
+  ...hexagon("rtest", 84, 22, 0.4, -20, 3, 5.4),
+  ...hexagon("c", 65, 28, 0.4, -20, 3, 5.4),
+  // ...makeHexagon("test", 30, 30, -6, -2, 2, 8),
 ];
 
 const ATOMS_ALT: IAtom[] = [
