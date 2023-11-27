@@ -107,6 +107,7 @@ interface IHexagon {
   dxLarge: number;
   dy: number;
   theta?: number;
+  r?: number;
   links?: { [key: number]: string[] };
   leafAtoms?: { [key: number]: { dx: number; dy: number }[] };
 }
@@ -119,6 +120,7 @@ function hexagon({
   dxLarge,
   dy,
   theta = 0,
+  r = 10,
   links = {},
   leafAtoms = {},
 }: IHexagon) {
@@ -132,7 +134,7 @@ function hexagon({
     atoms.push({
       id: `${id}${n}`,
       ...p,
-      r: 10,
+      r,
       color: "dark-color",
       links: [`${id}${next}`, ...extraLinks],
     });
@@ -180,9 +182,9 @@ const ATOMS: IAtom[] = [
     id: "r1",
     cx: 66,
     cy: 33,
-    dxSmall: 4,
-    dxLarge: 7,
-    dy: 8,
+    dxSmall: 3.8,
+    dxLarge: 6.6,
+    dy: 7.6,
     links: { 1: ["r5"], 2: ["r4"] },
   }),
 ];

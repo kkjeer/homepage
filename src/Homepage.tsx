@@ -10,11 +10,13 @@ const LINKS_WIDTH = 250;
 const BIO_LINKS_GAP = "8vw";
 const TOTAL_WIDTH = `calc(${BIO_WIDTH} + ${BIO_LINKS_GAP} + ${LINKS_WIDTH}px)`;
 
+const DO_MOLECULES = false;
+
 export function Homepage() {
   return (
     <>
-      <Molecules />
-      <Molecules flipped />
+      {false && <Molecules />}
+      {false && <Molecules flipped />}
       <Stack
         id="fullscreen"
         verticalAlign="center"
@@ -41,8 +43,8 @@ export function Homepage() {
           <Stack horizontal tokens={{ childrenGap: 18 }}>
             {false && (
               <Image
-                src="Profile_blackandwhite"
-                style={{ width: 45, height: 45, borderRadius: "999pc" }}
+                src="Profile_tanbackground"
+                style={{ width: 65, height: 65, borderRadius: "999pc" }}
               />
             )}
             <Text style={{ fontSize: 24 }}>Hi, I'm</Text>
