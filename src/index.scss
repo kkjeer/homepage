@@ -208,6 +208,18 @@ span, .css-92 {
   }
 }
 
+/* molecule responsive widths */
+
+.molecule {
+  visibility: hidden;
+}
+
+@media screen and (min-width: 700px) and (min-aspect-ratio: 1.4) and (max-aspect-ratio: 2.4) {
+  .molecule {
+    visibility: visible;
+  }
+}
+
 /* molecule colors */
 
 .molecule {
