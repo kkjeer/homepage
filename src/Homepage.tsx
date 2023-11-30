@@ -4,6 +4,7 @@ import { Image } from "./Image";
 import { Link } from "react-router-dom";
 import { Contacts } from "./Contacts";
 import { Molecules } from "./Molecules";
+import { Hexagons } from "./Hexagons";
 
 const BIO_WIDTH = "40vw";
 const LINKS_WIDTH = 250;
@@ -17,6 +18,8 @@ export function Homepage() {
     <>
       {false && <Molecules />}
       {false && <Molecules flipped />}
+      <Hexagons />
+      <Hexagons flipped />
       <Stack
         id="fullscreen"
         verticalAlign="center"
