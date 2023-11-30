@@ -14,6 +14,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/homepage",
+    element: <App />,
+  },
+  {
     path: "contacts/:contactId",
     element: <div>Hello world</div>,
   },
