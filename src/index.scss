@@ -223,7 +223,6 @@ span, .css-92 {
 /* molecule colors */
 
 .molecule {
-  // border: 1px solid colors.$light-color;
   opacity: 0.4;
 }
 
@@ -257,6 +256,62 @@ span, .css-92 {
 
 .molecule line.light-neutral {
   stroke: colors.$medium-neutral;
+}
+
+/* nav bar link text styles */
+
+.nav-link .link-text {
+  font-family: Consolas;
+  font-size: 16px;
+  color: colors.$light-color;
+}
+
+.nav-link:hover .link-text {
+  color: colors.$dark-color;
+}
+
+.nav-link-active .link-text {
+  color: colors.$medium-neutral;
+}
+
+/* nav bar link hexagon colors */
+
+.nav-link .hexagon line {
+  stroke: colors.$light-color;
+}
+
+.nav-link:hover .hexagon line {
+  stroke: colors.$dark-color;
+}
+
+.nav-link .hexagon path {
+  stroke: colors.$medium-neutral;
+  stroke-width: 1.6;
+  fill: colors.$card-left;
+}
+
+.nav-link-active:hover .hexagon path {
+  stroke: colors.$dark-color;
+  fill: rgba(colors.$dark-color, 0.1);
+}
+
+/* nav bar link hexagon hover animation */
+
+.nav-link .hexagon {
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.nav-link:hover .hexagon {
+  animation-name: spin;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(180deg);
+  }
 }
 
 /* big text hover gradient effect */

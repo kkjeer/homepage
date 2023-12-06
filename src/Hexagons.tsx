@@ -29,29 +29,29 @@ export function Hexagons({ flipped = false }: { flipped?: boolean }) {
 
   window.addEventListener("resize", adjust);
 
-  const renderHexagon = (hex: IHexagon, idx: number) => {
-    const positions = makeHexagonPositions(hex);
-    return (
-      <>
-        {positions.map((pos, i) => {
-          const next = positions[(i + 1) % 6];
-          return (
-            <line
-              key={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
-              id={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
-              x1={`${pos.x}%`}
-              y1={`${pos.y}%`}
-              x2={`${next.x}%`}
-              y2={`${next.y}%`}
-              strokeWidth={hex.thickness ?? 1}
-              className={hex.color ?? "light-neutral"}
-              opacity={hex.opacity ?? 1}
-            />
-          );
-        })}
-      </>
-    );
-  };
+  // const renderHexagon = (hex: IHexagon, idx: number) => {
+  //   const positions = makeHexagonPositions(hex);
+  //   return (
+  //     <>
+  //       {positions.map((pos, i) => {
+  //         const next = positions[(i + 1) % 6];
+  //         return (
+  //           <line
+  //             key={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
+  //             id={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
+  //             x1={`${pos.x}%`}
+  //             y1={`${pos.y}%`}
+  //             x2={`${next.x}%`}
+  //             y2={`${next.y}%`}
+  //             strokeWidth={hex.thickness ?? 1}
+  //             className={hex.color ?? "light-neutral"}
+  //             opacity={hex.opacity ?? 1}
+  //           />
+  //         );
+  //       })}
+  //     </>
+  //   );
+  // };
 
   return (
     <svg
@@ -68,12 +68,59 @@ export function Hexagons({ flipped = false }: { flipped?: boolean }) {
       viewBox={`0 0 ${width} ${height}`}
       preserveAspectRatio="xMinYMin meet"
     >
-      {HEXAGONS.map((hex, idx) => renderHexagon(hex, idx))}
+      {HEXAGONS.map((hex, idx) => renderHexagon(hex, idx, flipped))}
     </svg>
   );
 }
 
-interface IHexagon {
+export function renderHexagon(
+  hex: IHexagon,
+  idx: number,
+  flipped: boolean = false,
+  full: boolean = false,
+  width: number = 100,
+  height: number = 100
+) {
+  const positions = makeHexagonPositions(hex);
+
+  if (full) {
+    let d = `M ${(positions[0].x * width) / 100} ${
+      (positions[0].y * height) / 100
+    } `;
+    for (let i = 1; i < positions.length; ++i) {
+      d += `L ${(positions[i].x * width) / 100} ${
+        (positions[i].y * height) / 100
+      } `;
+    }
+    d += `L ${(positions[0].x * width) / 100} ${
+      (positions[0].y * height) / 100
+    }z`;
+    return <path d={d} />;
+  }
+
+  return (
+    <>
+      {positions.map((pos, i) => {
+        const next = positions[(i + 1) % 6];
+        return (
+          <line
+            key={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
+            id={`hexline-${idx}-${i}-${flipped ? "flipped" : ""}`}
+            x1={`${pos.x}%`}
+            y1={`${pos.y}%`}
+            x2={`${next.x}%`}
+            y2={`${next.y}%`}
+            strokeWidth={hex.thickness ?? 1}
+            className={hex.color ?? "light-neutral"}
+            opacity={hex.opacity ?? 1}
+          />
+        );
+      })}
+    </>
+  );
+}
+
+export interface IHexagon {
   x: number;
   y: number;
   dxSmall?: number;
